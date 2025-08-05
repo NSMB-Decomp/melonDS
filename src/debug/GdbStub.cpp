@@ -530,6 +530,7 @@ StubState GdbStub::Enter(bool stay, TgtStatus stat, u32 arg, bool wait_for_conn)
 			Log(LogLevel::Info, "[GDB] disconnect\n");
 			SignalStatus(TgtStatus::None, ~(u32)0);
 			do_next = false;
+			RecvBufferFilled = 0;
 			break;
 		default: break;
 		}
