@@ -89,6 +89,7 @@ bool GdbStub::Init(int port)
 #endif
 
 	int r;
+	int nodelay;
 	struct sockaddr_in* server = (struct sockaddr_in*)ServerSA;
 	struct sockaddr_in* client = (struct sockaddr_in*)ClientSA;
 
@@ -132,6 +133,9 @@ bool GdbStub::Init(int port)
 		Log(LogLevel::Error, "[GDB] err: can't listen to SockFd\n");
 		goto err;
 	}
+
+	nodelay = 1;
+	setsockopt(SockFd, IPPROTO_TCP, TCP_NODELAY, &nodelay, sizeof(nodelay));
 
 	return true;
 
