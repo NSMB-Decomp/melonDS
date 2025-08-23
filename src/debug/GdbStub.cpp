@@ -515,19 +515,19 @@ StubState GdbStub::Enter(bool stay, TgtStatus stat, u32 arg, bool wait_for_conn)
 		switch (st)
 		{
 		case StubState::Break:
-			Log(LogLevel::Info, "[GDB] break execution\n");
+			Log(LogLevel::Debug, "[GDB] break execution\n");
 			SignalStatus(TgtStatus::BreakReq, ~(u32)0);
 			break;
 		case StubState::Continue:
-			Log(LogLevel::Info, "[GDB] continue execution\n");
+			Log(LogLevel::Debug, "[GDB] continue execution\n");
 			do_next = false;
 			break;
 		case StubState::Step:
-			Log(LogLevel::Info, "[GDB] single-step\n");
+			Log(LogLevel::Debug, "[GDB] single-step\n");
 			do_next = false;
 			break;
 		case StubState::Disconnect:
-			Log(LogLevel::Info, "[GDB] disconnect\n");
+			Log(LogLevel::Debug, "[GDB] disconnect\n");
 			SignalStatus(TgtStatus::None, ~(u32)0);
 			do_next = false;
 			RecvBufferFilled = 0;
